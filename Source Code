@@ -14,7 +14,7 @@ public class BlackJack
                 System.out.println("You're out of coins! Game Over!");
                 break;
             }
-            System.out.println("You have " + "coins.");
+            System.out.println("You have " + coins + "coins.");
             System.out.println("How many coins do you want to bet? ");
             int bet = console.nextInt();
             while (bet > coins || bet <= 0)
@@ -31,7 +31,7 @@ public class BlackJack
             cardvalue = rng.nextInt(10)+2;
             System.out.println("You've been dealt a " + cardvalue);
             playerHand+=cardvalue;
-            System.out.print("Your total is: " + playerHand);
+            System.out.println("Your total is: " + playerHand);
 
             cardvalue = rng.nextInt(10)+2;
             int dealerHand = 0;
@@ -39,7 +39,7 @@ public class BlackJack
             cardvalue = rng.nextInt(10)+2;
             dealerHand+=cardvalue;
 
-            System.out.print("Do you want to hit(1) or stand(2)?");
+            System.out.println("Do you want to hit(1) or stand(2)?");
             int choice = console.nextInt();
             while (choice == 1 && playerHand <= 21)
             {
