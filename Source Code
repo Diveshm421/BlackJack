@@ -1,0 +1,101 @@
+import java.util.*;
+public class BlackJack
+{
+    public static void main(String[] args)
+    {
+        Scanner console = new Scanner(System.in);
+        Random rng = new Random();
+        int playAgain;
+        int coins = 100;
+        do
+        {
+            if (coins <= 0)
+            {
+                System.out.println("You're out of coins! Game Over!");
+                break;
+            }
+            System.out.println("You have " + "coins.");
+            System.out.println("How many coins do you want to bet? ");
+            int bet = console.nextInt();
+            while (bet > coins || bet <= 0)
+            {
+                System.out.println("Invalid bet. Enter a number between 1 and " + coins + ": ");
+                bet = console.nextInt();
+
+            }
+
+            int cardvalue = rng.nextInt(10)+2;
+            int playerHand = 0;
+            System.out.println("You've been dealt a " + cardvalue);
+            playerHand+=cardvalue;
+            cardvalue = rng.nextInt(10)+2;
+            System.out.println("You've been dealt a " + cardvalue);
+            playerHand+=cardvalue;
+            System.out.print("Your total is: " + playerHand);
+
+            cardvalue = rng.nextInt(10)+2;
+            int dealerHand = 0;
+            dealerHand+=cardvalue;
+            cardvalue = rng.nextInt(10)+2;
+            dealerHand+=cardvalue;
+
+            System.out.print("Do you want to hit(1) or stand(2)?");
+            int choice = console.nextInt();
+            while (choice == 1 && playerHand <= 21)
+            {
+                cardvalue = rng.nextInt(10)+2;
+                System.out.println("You've been dealt a" + cardvalue);
+                playerHand+=cardvalue;
+                System.out.println("Your new total is " + playerHand);
+                if (playerHand > 21)
+                {
+                    System.out.println("You busted!");
+                    break;
+                }
+                System.out.print("Do you want to hit(1) or stand(2)?");
+                choice = console.nextInt();
+            }
+            System.out.println("The dealer shows " + dealerHand);
+            while (dealerHand <= 16)
+            {
+                System.out.println("The dealer hits and was dealt a " + cardvalue);
+                dealerHand+=cardvalue;
+                if (dealerHand > 21)
+                {
+                    break;
+                }
+            }
+            if (playerHand > 21 && dealerHand > 21)
+            {
+                System.out.println("You and the dealer both busted! Push(You don't lose any coins)!");
+            }
+            if (playerHand > 21 && dealerHand <= 21)
+            {
+                System.out.println("You busted, the dealer wins!");
+                coins -= bet;
+            }
+            if (dealerHand > 21 && playerHand <= 21)
+            {
+                System.out.println("The dealer busted, you win!");
+                coins += bet;
+            }
+            if (dealerHand <= 21 && playerHand <= 21)
+            {
+                if (dealerHand > playerHand)
+                {
+                    System.out.println("The dealer was closer to 21. Dealer wins!");
+                    coins -= bet;
+                }
+                if (dealerHand < playerHand)
+                {
+                    System.out.println("You were closer to 21. You win!");
+                    coins += bet;
+                }
+            }
+            System.out.println("You now have " + coins + " coins.");
+            System.out.print("Do you want to play again? Yes(1) or No(2)");
+            playAgain = console.nextInt();
+        }while (playAgain == 1);
+        System.out.println("Thanks for playing!");
+    }
+}
