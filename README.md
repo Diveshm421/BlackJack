@@ -9,7 +9,8 @@ This is a simple console-based Blackjack game written in Java.
 - Coins carry over between rounds
 
 ## How to Run
-1. Open the Replit link
-2. Click remix this app
-3. Click the green project button
-4. Play the game in the console
+Download `BlackJack.jar` from:
+https://github.com/Diveshm421/BlackJack/releases/tag/v1.0
+Run it using:
+```bash
+java -jar BlackJack.jar
